@@ -19,7 +19,7 @@ CREATE TABLE serviceSurvey(
 CREATE TABLE phones(
     id SERIAL NOT NULL PRIMARY KEY,
     number TEXT NOT NULL,
-    "customersId" INTEGER NOT NULL REFERENCES "customers"("id")
+    "customerId" INTEGER NOT NULL REFERENCES "customers"("id")
 );
 CREATE TABLE addresses(
     id SERIAL NOT NULL PRIMARY KEY,
@@ -29,12 +29,12 @@ CREATE TABLE addresses(
     neighborhood TEXT NOT NULL,
     "zipCode" TEXT NOT NULL UNIQUE,
     city TEXT NOT NULL,
-    state TEXT NOT NULL
+    state TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE actors(
     id SERIAL NOT NULL PRIMARY KEY,
-    name TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
     nationality TEXT NOT NULL,
     "birthDate" DATE NOT NULL
 );
@@ -67,7 +67,7 @@ CREATE TABLE renteds(
     "totalRenteds" INTEGER NOT NULL
 );
 
-CREATE TABLE return(
+CREATE TABLE returns(
     id SERIAL NOT NULL PRIMARY KEY,
     "returnDate" DATE NOT NULL DEFAULT NOW(),
     "customerId" INTEGER NOT NULL REFERENCES "customers"("id"),
